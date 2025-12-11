@@ -31,12 +31,12 @@ public class PetsController(ManagementDbContext dbContext) : ControllerBase
 
         return CreatedAtRoute(nameof(GetById), new { id = pet.Id }, newPet);
     }
-}
 
-public record NewPet(string Name, int Age, int BreedId)
-{
-    public Pet ToPet()
+    public record NewPet(string Name, int Age, int BreedId)
     {
-        return new Pet() { Name = Name, Age = Age, BreedId = BreedId };
+        public Pet ToPet()
+        {
+            return new Pet() { Name = Name, Age = Age, BreedId = BreedId };
+        }
     }
 }

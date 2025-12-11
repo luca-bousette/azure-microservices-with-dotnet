@@ -31,26 +31,26 @@ namespace Wpm.Management.Api.DataAccess
         }
 
     }
-}
 
-public static class ManagementDbContextExtensions
-{
-    public static void EnsureDbIsCreated(this IApplicationBuilder app)
+    public static class ManagementDbContextExtensions
     {
-        using var scope = app.ApplicationServices.CreateScope();
-        var context = scope.ServiceProvider.GetService<ManagementDbContext>();
-        context!.Database.EnsureCreated();
+        public static void EnsureDbIsCreated(this IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var context = scope.ServiceProvider.GetService<ManagementDbContext>();
+            context!.Database.EnsureCreated();
+        }
     }
+
+    public class Pet
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+        public int BreedId { get; set; }
+        public Breed Breed { get; set; }
+    }
+
+    public record Breed(int Id, string Name);
 }
-
-public class Pet
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Age { get; set; }
-
-    public int BreedId { get; set; }
-    public Breed Breed { get; set; }
-}
-
-public record Breed(int Id, string Name);
