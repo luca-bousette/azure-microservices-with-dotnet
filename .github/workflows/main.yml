@@ -30,8 +30,8 @@ jobs:
 
       - name: 'Build and push Clinic container image'
         run: |
-          docker build src -f src/Wpm.Clinic.Api/Dockerfile -t ${{ secrets.ACR_LOGIN_SERVER }}/wpm-Clinic-api:${{ github.sha }}
-          docker push ${{ secrets.ACR_LOGIN_SERVER }}/wpm-Clinic-api:${{ github.sha }}
+          docker build src -f src/Wpm.Clinic.Api/Dockerfile -t ${{ secrets.ACR_LOGIN_SERVER }}/wpm-clinic-api:${{ github.sha }}
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/wpm-clinic-api:${{ github.sha }}
 
       - name: Deploy to Management Container Apps
         uses: azure/container-apps-deploy-action@v2
